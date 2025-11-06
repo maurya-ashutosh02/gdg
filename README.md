@@ -1,4 +1,4 @@
-# GDG Project
+# PaperpulseAI
 
 THIS PROJECT WAS A MADE IN GEN AI HACKATAHON LUCKNOW ORGANISED BY GOOGLE DEVELOPERS GROUP 
 
@@ -63,6 +63,8 @@ streamlit run app.py
 ![Screenshot2](./Screenshot2.jpg)
 ![Screenshot3](./Screenshot3.jpg)
 
+## License
+![Live Link](https://paperpulseai.streamlit.app/)
 
 
 
