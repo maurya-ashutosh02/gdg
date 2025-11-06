@@ -1,5 +1,7 @@
 # GDG Project
 
+THIS PROJECT WAS A MADE IN GEN AI HACKATAHON LUCKNOW ORGANISED BY GOOGLE DEVELOPERS GROUP 
+
 This repository contains a Python application for interacting with research papers using AI-powered features. The project is organized as follows:
 
 ## Project Structure
@@ -35,7 +37,8 @@ gdg/
 ## Setup
 1. Clone the repository:
    ```powershell
-   git clone <repo-url>
+   git clone https://github.com/maurya-ashutosh02/gdg
+
    cd gdg
    ```
 2. Create and activate a virtual environment:
@@ -65,7 +68,7 @@ streamlit run app.py
 
 
 ## License
-![License: MIT](https://github.com/maurya-ashutosh02/gdg/LICENSE)
+![License: MIT](https://github.com/maurya-ashutosh02/gdg/blob/main/LICENSE)
 
 
 
