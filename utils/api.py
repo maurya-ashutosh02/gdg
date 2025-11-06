@@ -14,7 +14,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 # -----------------------------
 def summarize_paper(text: str):
     """Use Gemini to summarize research paper text into sections."""
-    model = genai.GenerativeModel("gemini-1.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     prompt = f"""
     You are an academic assistant. Summarize this research paper into the following sections:
     - TL;DR Summary
@@ -35,7 +35,7 @@ def summarize_paper(text: str):
 
 def chat_with_paper(query: str, context: str):
     """Ask Gemini a question about the uploaded paper."""
-    model = genai.GenerativeModel("gemini-1.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     prompt = f"""
     You are a research assistant. Based on the following paper, answer clearly and concisely.
 
@@ -51,7 +51,7 @@ def chat_with_paper(query: str, context: str):
 
 def extract_insights(text: str):
     """Extract keywords, datasets, and algorithms from the paper."""
-    model = genai.GenerativeModel("gemini-1.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     prompt = f"""
     From this research paper text, extract the following:
     - Top 5 keywords
@@ -68,7 +68,7 @@ def extract_insights(text: str):
 
 def simplify_summary(text: str):
     """Simplify the summary for a younger audience."""
-    model = genai.GenerativeModel("gemini-1.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     prompt = f"""
     Simplify this research summary as if explaining to a 15-year-old. Use short, clear sentences:
     {text[:4000]}
@@ -79,7 +79,7 @@ def simplify_summary(text: str):
 
 def future_research_ideas(text: str):
     """Suggest possible future research directions."""
-    model = genai.GenerativeModel("gemini-1.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     prompt = f"""
     Based on this paper, suggest 3-5 possible future research directions or open problems.
     Return a numbered list.

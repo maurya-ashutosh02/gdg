@@ -7,7 +7,7 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def gemini_summarize(text):
-    model = genai.GenerativeModel("gemini-1.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     prompt = f"""
     Summarize this research paper text in structured sections:
     - TL;DR Summary
@@ -23,7 +23,7 @@ def gemini_summarize(text):
     return response.text
 
 def gemini_chat(query, context):
-    model = genai.GenerativeModel("gemini-1.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     prompt = f"""
     You are a research paper assistant. Based on the paper content below,
     answer this question clearly and accurately.
