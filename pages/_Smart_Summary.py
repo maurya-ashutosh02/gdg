@@ -20,9 +20,32 @@ if uploaded:
         st.success("Summary generated successfully ✅")
 
     if voice:
-        with st.spinner("Generating voice summary..."):
-            tts = call_api("/tts", {"text": st.session_state.paper_text})
-        st.markdown(f"[🎧 Listen to Voice Summary]({tts.get('audio_url', '#')})")
+    # Determine what to read: TL;DR if present, else abstract, else paper text
+        if "summary" in st.session_state and st.session_state.summary:
+            s = st.session_state.summary
+            read_text = (
+                s.get("tldr")
+                or s.get("abstract")
+                or s.get("methodology")
+                or st.session_state.paper_text[:2000]
+            )
+        else:
+            read_text = st.session_state.paper_text[:2000] if st.session_state.get("paper_text") else ""
+
+        if not read_text.strip():
+            st.warning("No content available to generate voice summary. Please analyze a paper first.")
+        else:
+            with st.spinner("Generating voice summary..."):
+                tts = call_api("/tts", {"text": read_text})
+
+            if tts.get("audio_base64"):
+                import base64
+                audio_bytes = base64.b64decode(tts["audio_base64"])
+                st.audio(audio_bytes, format="audio/mp3")
+                st.success("🎧 Voice summary ready — reading TL;DR or best available summary.")
+            else:
+                st.error(tts.get("error", "Audio generation failed."))
+
 
 if "summary" in st.session_state and st.session_state.summary:
     s = st.session_state.summary

@@ -2,7 +2,9 @@
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
-
+from gtts import gTTS
+import base64
+import tempfile
 # Load environment variables (from .env)
 load_dotenv()
 
@@ -107,6 +109,9 @@ def call_api(path: str, payload: dict):
         return simplify_summary(text)
     elif path == "/future-work":
         return future_research_ideas(text)
+    elif path == "/tts":
+        return generate_tts(payload.get("text", ""))
+
     else:
         return {"error": f"Unknown path: {path}"}
 
@@ -124,3 +129,30 @@ def _extract_json(response_text: str):
     except Exception:
         # fallback heuristic if model doesn't return proper JSON
         return {"raw_response": response_text}
+
+
+def generate_tts(text: str):
+    """Generate an MP3 from text and return it as base64 for Streamlit playback."""
+    text = text.strip()
+    if not text:
+        return {"error": "Empty text — nothing to read."}
+
+    try:
+        # Shorten overly long text to avoid gTTS limit
+        if len(text) > 4500:
+            text = text[:4500] + " ... summary truncated."
+
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
+            tts = gTTS(text=text, lang="en", slow=False, tld="com")
+            tts.save(tmp.name)
+            with open(tmp.name, "rb") as f:
+                audio_bytes = f.read()
+
+        # Encode to base64 for Streamlit playback
+        audio_base64 = base64.b64encode(audio_bytes).decode("utf-8")
+
+        os.remove(tmp.name)
+        return {"audio_base64": audio_base64}
+
+    except Exception as e:
+        return {"error": f"TTS generation failed: {str(e)}"}
