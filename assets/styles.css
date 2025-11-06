@@ -1,0 +1,32 @@
+:root {
+  --pp-accent: #2563eb;
+  --pp-accent-soft: #e6f0ff;
+}
+
+.pp-chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--pp-accent-soft);
+  color: #1e3a8a;
+  border: 1px solid #bfdbfe;
+  font-size: 0.85rem;
+  margin: 4px 6px 4px 0;
+}
+
+.pp-banner {
+  background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin-bottom: 8px;
+}
+
+.pp-title {
+  font-size: 1.7rem;
+  margin: 0;
+}
+
+.pp-tagline {
+  color: #4b5563;
+}
