@@ -111,6 +111,9 @@ def call_api(path: str, payload: dict):
         return future_research_ideas(text)
     elif path == "/tts":
         return generate_tts(payload.get("text", ""))
+    elif path == "/compare":
+        return compare_papers(payload.get("text_a", ""), payload.get("text_b", ""))
+
 
     else:
         return {"error": f"Unknown path: {path}"}
@@ -156,3 +159,30 @@ def generate_tts(text: str):
 
     except Exception as e:
         return {"error": f"TTS generation failed: {str(e)}"}
+    
+def compare_papers(text_a: str, text_b: str):
+        """Use Gemini to compare two research papers and return structured insights."""
+        model = genai.GenerativeModel("gemini-2.5-flash")
+
+        prompt = f"""
+        You are an academic comparison assistant.
+
+        Compare these two research papers and provide:
+        1. 3–5 key differences between them
+        2. 3–5 key similarities
+        3. A short summary paragraph highlighting which paper offers stronger contributions or novelty
+
+        Format your response as JSON with keys:
+        - "differences": [list of strings]
+        - "similarities": [list of strings]
+        - "summary": "string"
+
+        --- PAPER A ---
+        {text_a[:15000]}
+
+        --- PAPER B ---
+        {text_b[:15000]}
+        """
+
+        response = model.generate_content(prompt)
+        return _extract_json(response.text)
