@@ -20,7 +20,7 @@ load_css("assets/styles.css")
 title_banner()
 
 # Sidebar
-st.sidebar.image("assets/logo.jpg", width=70)
+st.sidebar.image("assets/logo1.png", width=70)
 st.sidebar.title("PaperPulse")
 st.sidebar.caption("Your AI Research Companion")
 
