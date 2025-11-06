@@ -56,9 +56,9 @@ streamlit run app.py
 ```
 
 ## Demonstration 
-![Screenshot1](.\Screenshot1.png)
-![Screenshot2](.\Screenshot2.jpg)
-![Screenshot3](.\Screenshot3.jpg)
+![Screenshot1](./Screenshot1.png)
+![Screenshot2](./Screenshot2.jpg)
+![Screenshot3](./Screenshot3.jpg)
 
 
 
